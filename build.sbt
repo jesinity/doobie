@@ -17,7 +17,7 @@ lazy val scalaCheckVersion    = "1.13.5"
 lazy val scalatestVersion     = "3.0.4"
 lazy val shapelessVersion     = "2.3.2"
 lazy val sourcecodeVersion    = "0.1.4"
-lazy val specs2Version        = "3.9.4"
+lazy val specs2Version        = "3.9.5"
 
 // This is used in a couple places. Might be nice to separate these things out.
 lazy val postgisDep = "net.postgis" % "postgis-jdbc" % postGisVersion
@@ -279,6 +279,7 @@ lazy val core = project
 lazy val example = project
   .in(file("modules/example"))
   .settings(doobieSettings ++ noPublishSettings)
+  .disablePlugins(BackgroundRunPlugin) // This makes the weird background debugging info go away
   .dependsOn(core, postgres, specs2, scalatest, hikari, h2)
 
 lazy val postgres = project

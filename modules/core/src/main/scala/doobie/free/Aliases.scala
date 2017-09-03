@@ -5,6 +5,7 @@
 package doobie.free
 
 trait Types {
+
   type BlobIO[A]              = blob.BlobIO[A]
   type CallableStatementIO[A] = callablestatement.CallableStatementIO[A]
   type ClobIO[A]              = clob.ClobIO[A]
@@ -19,6 +20,22 @@ trait Types {
   type SQLInputIO[A]          = sqlinput.SQLInputIO[A]
   type SQLOutputIO[A]         = sqloutput.SQLOutputIO[A]
   type StatementIO[A]         = statement.StatementIO[A]
+
+  type BlobOp[A]              = blob.BlobOp[A]
+  type CallableStatementOp[A] = callablestatement.CallableStatementOp[A]
+  type ClobOp[A]              = clob.ClobOp[A]
+  type ConnectionOp[A]        = connection.ConnectionOp[A]
+  type DatabaseMetaDataOp[A]  = databasemetadata.DatabaseMetaDataOp[A]
+  type DriverOp[A]            = driver.DriverOp[A]
+  type NClobOp[A]             = nclob.NClobOp[A]
+  type PreparedStatementOp[A] = preparedstatement.PreparedStatementOp[A]
+  type RefOp[A]               = ref.RefOp[A]
+  type ResultSetOp[A]         = resultset.ResultSetOp[A]
+  type SQLDataOp[A]           = sqldata.SQLDataOp[A]
+  type SQLInputOp[A]          = sqlinput.SQLInputOp[A]
+  type SQLOutputOp[A]         = sqloutput.SQLOutputOp[A]
+  type StatementOp[A]         = statement.StatementOp[A]
+
 }
 
 trait Modules {
