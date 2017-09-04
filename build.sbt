@@ -7,8 +7,8 @@ enablePlugins(CrossPerProjectPlugin)
 lazy val buildSettings = Seq(
   organization := "org.tpolecat",
   licenses ++= Seq(("MIT", url("http://opensource.org/licenses/MIT"))),
-  scalaVersion := "2.12.1",
-  crossScalaVersions := Seq("2.11.8", scalaVersion.value)
+  scalaVersion := "2.10.6",
+  crossScalaVersions := Seq("2.10.6", scalaVersion.value)
 )
 
 lazy val scalazCrossSettings = Seq(
@@ -97,8 +97,8 @@ lazy val doobie = project.in(file("."))
   .settings(noPublishSettings)
   // .settings(unidocSettings)
   // .settings(unidocProjectFilter in (ScalaUnidoc, unidoc) := inAnyProject -- inProjects(example, bench, docs))
-  .dependsOn(core, core_cats, h2, h2_cats, hikari, hikari_cats, postgres, postgres_cats, specs2, specs2_cats, example, example_cats, bench, bench_cats, scalatest, scalatest_cats, docs, docs_cats)
-  .aggregate(core, core_cats, h2, h2_cats, hikari, hikari_cats, postgres, postgres_cats, specs2, specs2_cats, example, example_cats, bench, bench_cats, scalatest, scalatest_cats, docs, docs_cats)
+  .dependsOn(core, h2, hikari, postgres, specs2, bench, scalatest, docs)
+  .aggregate(core, h2, hikari, postgres, specs2, bench, scalatest, docs)
   .settings(freeGenSettings)
   .settings(
     freeGenDir := file("yax/core/src/main/scala/doobie/free"),
@@ -185,6 +185,7 @@ lazy val core = project.in(file("modules/core"))
   )
 
 val catsVersion = "0.9.0"
+/*
 lazy val core_cats = project.in(file("modules-cats/core"))
   .settings(
     yax(file("yax/core"), "cats", "fs2"),
@@ -198,23 +199,26 @@ lazy val core_cats = project.in(file("modules-cats/core"))
       "com.h2database" %  "h2"        % "1.4.193"   % "test"
     )
   )
+*/
 
 ///
 /// EXAMPLE
 ///
 
-lazy val example = project.in(file("modules/example"))
+/*lazy val example = project.in(file("modules/example"))
   .settings(doobieSettings ++ noPublishSettings)
   .settings(
     yax(file("yax/example"), "scalaz"),
     scalazCrossSettings
   )
-  .dependsOn(core, postgres, specs2, scalatest, hikari, h2)
+  .dependsOn(core, postgres, specs2, scalatest, hikari, h2)*/
 
+/*
 lazy val example_cats = project.in(file("modules-cats/example"))
   .settings(doobieSettings ++ noPublishSettings)
   .settings(yax(file("yax/example"), "cats", "fs2"))
   .dependsOn(core_cats, postgres_cats, specs2_cats, scalatest_cats, hikari_cats, h2_cats)
+*/
 
 ///
 /// POSTGRES
@@ -250,12 +254,14 @@ lazy val postgres = project.in(file("modules/postgres"))
   )
   .dependsOn(core)
 
+/*
 lazy val postgres_cats = project.in(file("modules-cats/postgres"))
   .settings(
     yax(file("yax/postgres"), "cats", "fs2"),
     postgresSettings("postgres-cats")
   )
   .dependsOn(core_cats)
+*/
 
 ///
 /// H2
@@ -277,12 +283,14 @@ lazy val h2 = project.in(file("modules/h2"))
   )
   .dependsOn(core)
 
+/*
 lazy val h2_cats = project.in(file("modules-cats/h2"))
   .settings(
     yax(file("yax/h2"), "cats", "fs2"),
     h2Settings("h2-cats")
   )
   .dependsOn(core_cats)
+*/
 
 ///
 /// HIKARI
@@ -304,12 +312,14 @@ lazy val hikari = project.in(file("modules/hikari"))
   )
   .dependsOn(core)
 
+/*
 lazy val hikari_cats = project.in(file("modules-cats/hikari"))
   .settings(
     yax(file("yax/hikari"), "cats", "fs2"),
     hikariSettings("hikari-cats")
   )
   .dependsOn(core_cats)
+*/
 
 ///
 /// SPECS2
@@ -331,12 +341,14 @@ lazy val specs2 = project.in(file("modules/specs2"))
   )
   .dependsOn(core)
 
+/*
 lazy val specs2_cats = project.in(file("modules-cats/specs2"))
   .settings(
     yax(file("yax/specs2"), "cats", "fs2"),
     specs2Settings("specs2-cats")
   )
   .dependsOn(core_cats)
+*/
 
 ///
 /// SCALATEST
@@ -358,12 +370,14 @@ lazy val scalatest = project.in(file("modules/scalatest"))
   )
   .dependsOn(core)
 
+/*
 lazy val scalatest_cats = project.in(file("modules-cats/scalatest"))
   .settings(
     yax(file("yax/scalatest"), "cats", "fs2"),
     scalaTestSettings("scalatest-cats")
   )
   .dependsOn(core_cats)
+*/
 
 ///
 /// BENCH
@@ -377,10 +391,12 @@ lazy val bench = project.in(file("modules/bench"))
   )
   .dependsOn(core, postgres)
 
+/*
 lazy val bench_cats = project.in(file("modules-cats/bench"))
   .settings(doobieSettings ++ noPublishSettings)
   .settings(yax(file("yax/bench"), "cats", "fs2"))
   .dependsOn(core_cats, postgres_cats)
+*/
 
 ///
 /// DOCS
@@ -436,6 +452,7 @@ lazy val docs = project.in(file("modules/docs"))
     scalatest
   )
 
+/*
 lazy val docs_cats = project.in(file("modules-cats/docs"))
   .settings(docsSettings("cats", "fs2"))
   .dependsOn(
@@ -446,3 +463,4 @@ lazy val docs_cats = project.in(file("modules-cats/docs"))
     h2_cats, 
     scalatest_cats
   )
+*/
